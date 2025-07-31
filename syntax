@@ -1,0 +1,117 @@
+Yes! You're asking how many similar **collection types** or **data structure interfaces** like `Queue<TreeNode> queue = new LinkedList<>();` exist in Java — where:
+
+* You declare a variable using an **interface** (like `Queue`)
+* And instantiate it using a **concrete class** (like `LinkedList`)
+
+Let’s go over the **main interfaces in the Java Collections Framework** and the **common implementing classes**:
+
+---
+
+## ✅ 1. `List<E>` Interface
+
+Used when you want **ordered, index-based access**.
+
+```java
+List<Integer> list = new ArrayList<>();
+List<String> list = new LinkedList<>();
+```
+
+---
+
+## ✅ 2. `Set<E>` Interface
+
+Used when you want **unique elements**, no duplicates.
+
+```java
+Set<String> set = new HashSet<>();
+Set<Integer> set = new TreeSet<>();
+Set<Double> set = new LinkedHashSet<>();
+```
+
+---
+
+## ✅ 3. `Queue<E>` Interface
+
+Used for **FIFO (First-In, First-Out)** operations.
+
+```java
+Queue<TreeNode> queue = new LinkedList<>();
+Queue<Integer> queue = new ArrayDeque<>();
+```
+
+Also has **subtypes**:
+
+* `Deque<E>` → Double-ended queue
+
+  ```java
+  Deque<String> deque = new ArrayDeque<>();
+  ```
+
+* `PriorityQueue<E>` → Elements ordered by priority
+
+  ```java
+  Queue<Integer> pq = new PriorityQueue<>();
+  ```
+
+---
+
+## ✅ 4. `Map<K, V>` Interface
+
+Used for **key-value pairs**.
+
+```java
+Map<Integer, String> map = new HashMap<>();
+Map<Integer, String> map = new TreeMap<>();
+Map<Integer, String> map = new LinkedHashMap<>();
+```
+
+---
+
+## ✅ 5. `Stack<E>` (Class) — Legacy
+
+```java
+Stack<Integer> stack = new Stack<>();
+```
+
+But modern Java prefers:
+
+```java
+Deque<Integer> stack = new ArrayDeque<>();
+```
+
+When used as a stack (LIFO), `Deque` is faster and recommended over `Stack`.
+
+---
+
+## 🧮 Summary Table:
+
+| Interface  | Example Variable Declaration                  | Common Implementations                |
+| ---------- | --------------------------------------------- | ------------------------------------- |
+| `List<E>`  | `List<String> list = new ArrayList<>();`      | `ArrayList`, `LinkedList`             |
+| `Set<E>`   | `Set<Integer> set = new HashSet<>();`         | `HashSet`, `TreeSet`, `LinkedHashSet` |
+| `Queue<E>` | `Queue<Node> queue = new LinkedList<>();`     | `LinkedList`, `ArrayDeque`            |
+| `Deque<E>` | `Deque<String> dq = new ArrayDeque<>();`      | `ArrayDeque`, `LinkedList`            |
+| `Map<K,V>` | `Map<String, Integer> map = new HashMap<>();` | `HashMap`, `TreeMap`, `LinkedHashMap` |
+| `Stack<E>` | `Stack<Integer> stack = new Stack<>();`       | (Legacy)                              |
+
+---
+
+### 🧠 Why Use Interface on the Left?
+
+It promotes **flexibility**:
+
+```java
+Queue<String> queue = new LinkedList<>();
+```
+
+You can easily switch to:
+
+```java
+Queue<String> queue = new ArrayDeque<>();
+```
+
+…without changing the rest of your code!
+
+---
+
+Let me know if you want examples of using any of these interfaces or a real-world scenario showing how to choose between them.
