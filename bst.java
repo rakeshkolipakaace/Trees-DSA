@@ -38,7 +38,7 @@ public class bst {
         Node root = null;
         bst t = new bst();
         for (int i = 0; i < arr.length; i++) {
-            root=t.insert(root, arr[i]);
+            root = t.insert(root, arr[i]);
         }
         t.inorder(root);
     }
