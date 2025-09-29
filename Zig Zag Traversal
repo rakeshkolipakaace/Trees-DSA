@@ -46,3 +46,64 @@ class Solution {
 
 // optimal
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        Stack<TreeNode >curr=new Stack<>();
+        Stack<TreeNode>next=new Stack<>();
+        List<List<Integer>>result=new ArrayList<>();
+
+        if(root==null) return result;
+        curr.add(root);
+        int level=0;
+
+        while(curr.size()!=0){
+        List<Integer>removal=new ArrayList<>();
+
+           while(curr.size()!=0){
+             TreeNode rm=curr.pop();
+            removal.add(rm.val);
+            if(level%2==0){
+                if(rm.left!=null){
+                    next.add(rm.left);
+                }
+                if(rm.right!=null){
+                    next.add(rm.right);
+                }
+            }
+            else{
+                if(rm.right!=null){
+                    next.add(rm.right);
+                }
+                if(rm.left!=null){
+                    next.add(rm.left);
+                }
+            }
+
+       
+           }
+            result.add(removal);
+        level++;
+        curr=next;
+        next=new Stack<>();
+
+        }  
+        
+        return result;
+
+    }
+}
