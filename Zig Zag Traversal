@@ -1,0 +1,48 @@
+// brute force solution
+
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        int h = height(root);
+
+        // alternate order using a flag
+        boolean leftToRight = true;
+
+        for (int level = 1; level <= h; level++) {
+            List<Integer> current = new ArrayList<>();
+            getLevel(root, level, current, leftToRight);
+            result.add(current);
+            leftToRight = !leftToRight; // flip direction
+        }
+
+        return result;
+    }
+
+    // compute height of the tree
+    private int height(TreeNode root) {
+        if (root == null) return 0;
+        return 1 + Math.max(height(root.left), height(root.right));
+    }
+
+    // collect nodes at a given level in given order
+    private void getLevel(TreeNode root, int level, List<Integer> list, boolean leftToRight) {
+        if (root == null) return;
+        if (level == 1) {
+            list.add(root.val);
+        } else {
+            if (leftToRight) {
+                getLevel(root.left, level - 1, list, leftToRight);
+                getLevel(root.right, level - 1, list, leftToRight);
+            } else {
+                getLevel(root.right, level - 1, list, leftToRight);
+                getLevel(root.left, level - 1, list, leftToRight);
+            }
+        }
+    }
+}
+
+
+// optimal
+
